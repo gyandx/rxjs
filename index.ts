@@ -1,23 +1,14 @@
-import './style.css';
+import { Observable, interval, from } from 'rxjs';
 
-import { Observable } from 'rxjs';
+const studentData$: Observable<string> = from(['Ram', 'Mohan', 'Ramesh']);
 
-let observer = new Observable((observer) => {
-  try {
-    observer.next('Ram');
-    // observer.next('Rohit');
-    // observer.next('Rahul');
-    setInterval(() => {
-      observer.next('Rohit');
-    }, 3000);
-    setInterval(() => {
-      observer.next('Rahul');
-    }, 6000);
-  } catch (e) {
-    observer.error(e);
-  }
-});
-
-observer.subscribe((data) => {
-  console.log(data);
+studentData$.subscribe((eachStudent) => {
+  const seq$ = interval(500);
+  // seq$.subscribe((num) => console.log(eachStudent + num));
+  // To stop the interval either we have to put some condition or use unscribe method
+  seq$.subscribe((num) => {
+    if (num < 5) {
+      console.log(eachStudent + num);
+    }
+  });
 });
