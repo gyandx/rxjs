@@ -2,7 +2,7 @@ import './style.css';
 
 import { Observable } from 'rxjs';
 
-let observer = new Observable((observer) => {
+let observer$ = new Observable((observer) => {
   try {
     observer.next('Ram');
     // observer.next('Rohit');
@@ -18,6 +18,6 @@ let observer = new Observable((observer) => {
   }
 });
 
-observer.subscribe((data) => {
+observer$.subscribe((data) => {
   console.log(data);
 });
