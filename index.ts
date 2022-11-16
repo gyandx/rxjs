@@ -1,23 +1,16 @@
 import './style.css';
 
-import { Observable } from 'rxjs';
+import { of, Observable } from 'rxjs';
 
-let observer = new Observable((observer) => {
-  try {
-    observer.next('Ram');
-    // observer.next('Rohit');
-    // observer.next('Rahul');
-    setInterval(() => {
-      observer.next('Rohit');
-    }, 3000);
-    setInterval(() => {
-      observer.next('Rahul');
-    }, 6000);
-  } catch (e) {
-    observer.error(e);
-  }
-});
+const student: Observable<String> = of('Rahul');
+const studentList: Observable<String[]> = of([
+  'Ram',
+  'Sita',
+  'Laxman',
+  'Hanuman',
+]);
+const studentObj: Observable<any> = of({ name: 'Rohit', age: 22 });
 
-observer.subscribe((data) => {
-  console.log(data);
-});
+student.subscribe((res) => console.log(res));
+studentList.subscribe((res) => console.log(res));
+studentObj.subscribe((res) => console.log(res));
